@@ -30,9 +30,6 @@ stages:
 - stage: 'Deploy_ACI'
   displayName: 'Deploy to ACI'
   condition: variables['ACI_DEPLOYMENT_NAME']
-  variables:
-  - template: diabetes_regression-variables-template.yml
-  - group: devopsforai-aml-vg
   jobs:
   - deployment: "Deploy_ACI"
     displayName: "Deploy to ACI"
@@ -40,7 +37,7 @@ stages:
     timeoutInMinutes: 0
     environment: "QA"
     strategy:
-     runOnce:
+     rolling:
       deploy: 
         steps:
         - download: none
