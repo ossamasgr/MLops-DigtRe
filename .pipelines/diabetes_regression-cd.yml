@@ -31,11 +31,13 @@ stages:
 - stage: 'Deploy_ACI'
   displayName: 'Deploy to ACI'
   condition: variables['ACI_DEPLOYMENT_NAME']
+  
   jobs:
   - job: "Deploy_ACI"
     displayName: "Deploy to ACI"
     container: mlops
     timeoutInMinutes: 0
+    environment: 'QA'
     steps:
     - download: none
     - template: diabetes_regression-get-model-id-artifact-template.yml
@@ -43,6 +45,7 @@ stages:
         projectId: '$(resources.pipeline.model-train-ci.projectID)'
         pipelineId: '$(resources.pipeline.model-train-ci.pipelineID)'
         artifactBuildId: ${{ parameters.artifactBuildId }}
+        
     - task: AzureCLI@1
       displayName: 'Install AzureML CLI'
       inputs:
@@ -83,6 +86,7 @@ stages:
     displayName: "Deploy to AKS"
     container: mlops
     timeoutInMinutes: 0
+    environment: 'Prod'
     steps:
     - template: diabetes_regression-get-model-id-artifact-template.yml
       parameters:
