@@ -37,7 +37,6 @@ stages:
     displayName: "Deploy to ACI"
     container: mlops
     timeoutInMinutes: 0
-    environment: 'QA'
     steps:
     - download: none
     - template: diabetes_regression-get-model-id-artifact-template.yml
@@ -55,6 +54,7 @@ stages:
         inlineScript: 'az extension add --source https://azurecliext.blob.core.windows.net/release/azure_cli_ml-1.27.0-py3-none-any.whl --yes'
     - task: AzureCLI@1
       displayName: "Deploy to ACI (CLI)"
+      env: "QA"
       inputs:
         azureSubscription: '$(WORKSPACE_SVC_CONNECTION)'
         scriptLocation: inlineScript
@@ -86,7 +86,7 @@ stages:
     displayName: "Deploy to AKS"
     container: mlops
     timeoutInMinutes: 0
-    environment: 'Prod'
+    
     steps:
     - template: diabetes_regression-get-model-id-artifact-template.yml
       parameters:
@@ -102,6 +102,7 @@ stages:
         inlineScript: 'az extension add --source https://azurecliext.blob.core.windows.net/release/azure_cli_ml-1.27.0-py3-none-any.whl --yes'
     - task: AzureCLI@1
       displayName: "Deploy to AKS (CLI)"
+      env: "Prod"
       inputs:
         azureSubscription: '$(WORKSPACE_SVC_CONNECTION)'
         scriptLocation: inlineScript
