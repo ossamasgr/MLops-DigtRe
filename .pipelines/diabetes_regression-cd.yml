@@ -37,7 +37,7 @@ stages:
     timeoutInMinutes: 0
     environment: "QA"
     strategy:
-     rolling:
+     canary:
       deploy: 
         steps:
         - download: none
