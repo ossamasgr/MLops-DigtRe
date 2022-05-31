@@ -53,7 +53,7 @@ stages:
         inlineScript: 'az extension add --source https://azurecliext.blob.core.windows.net/release/azure_cli_ml-1.27.0-py3-none-any.whl --yes'
     - task: AzureCLI@1
       displayName: "Deploy to ACI (CLI)"
-      environment: "QA"
+      env: "QA"
       inputs:
         azureSubscription: '$(WORKSPACE_SVC_CONNECTION)'
         scriptLocation: inlineScript
