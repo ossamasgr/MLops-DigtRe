@@ -22,7 +22,6 @@ resources:
       branches:
         include:
         - master
-
 variables:
 - template: diabetes_regression-variables-template.yml
 - group: devopsforai-aml-vg
@@ -54,7 +53,7 @@ stages:
         inlineScript: 'az extension add --source https://azurecliext.blob.core.windows.net/release/azure_cli_ml-1.27.0-py3-none-any.whl --yes'
     - task: AzureCLI@1
       displayName: "Deploy to ACI (CLI)"
-      env: "QA"
+      environment: "QA"
       inputs:
         azureSubscription: '$(WORKSPACE_SVC_CONNECTION)'
         scriptLocation: inlineScript
@@ -102,7 +101,6 @@ stages:
         inlineScript: 'az extension add --source https://azurecliext.blob.core.windows.net/release/azure_cli_ml-1.27.0-py3-none-any.whl --yes'
     - task: AzureCLI@1
       displayName: "Deploy to AKS (CLI)"
-      env: "Prod"
       inputs:
         azureSubscription: '$(WORKSPACE_SVC_CONNECTION)'
         scriptLocation: inlineScript
