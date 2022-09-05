@@ -14,8 +14,6 @@ trigger:
     include:
     - diabetes_regression/
     - ml_service/pipelines/diabetes_regression_build_train_pipeline.py
-    - ml_service/pipelines/diabetes_regression_build_train_pipeline_with_r.py
-    - ml_service/pipelines/diabetes_regression_build_train_pipeline_with_r_on_dbricks.py
 
 variables:
 - template: diabetes_regression-variables-template.yml
@@ -44,6 +42,11 @@ stages:
           export SUBSCRIPTION_ID=$(az account show --query id -o tsv)
           # Invoke the Python building and publishing a training pipeline
           python -m ml_service.pipelines.diabetes_regression_build_train_pipeline
+          
+          echo checking directory
+          ls 
+          pwd 
+
       displayName: 'Publish Azure Machine Learning Pipeline'
 
 - stage: 'Trigger_AML_Pipeline'
@@ -70,6 +73,9 @@ stages:
           # Set AMLPIPELINEID variable for next AML Pipeline task in next job
           AMLPIPELINEID="$(cat pipeline_id.txt)"
           echo "##vso[task.setvariable variable=AMLPIPELINEID;isOutput=true]$AMLPIPELINEID"
+          echo checking 
+          ls 
+          pwd
       name: 'getpipelineid'
       displayName: 'Get Pipeline ID'
   - job: "Run_ML_Pipeline"
