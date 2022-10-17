@@ -96,6 +96,8 @@ includes :
 * Delete AML Compute
   * Delete Compute
 
+    ![1666002984923](image/README/1666002984923.png)
+
 ##### **Triggers**
 
 [ML]-Train-Evaluate-Register Pipeline Can be triggered :
@@ -124,6 +126,8 @@ includes :
     * Cancel pipeline delete
     * Delete + Re-Deploy **OR** Deploy The New Dev-ACI
 
+      ![1666003045253](image/README/1666003045253.png)
+
 ---
 
 **Triggers**
@@ -144,6 +148,8 @@ includes :
   * send notification for dev aci deletion - sendgrid
   * Waiting 24 Hours
   * Delete ACI
+
+    ![1666003093162](image/README/1666003093162.png)
 
 ##### **Triggers**
 
@@ -179,6 +185,8 @@ includes :
 * Check If Build Is Already Deployed
 * Delete QA-ACI + Deploy New Version *OR* Deploy QA-ACI
 
+  ![1666003179281](image/README/1666003179281.png)
+
 ##### **Triggers**
 
     [Manual]-[Custom-QA]-Deploy Pipeline Can be triggered :
@@ -193,14 +201,26 @@ includes :
 
 ##### **Functionality**
 
-    [Manual]-[Prod]-deployment :
+ [Manual]-[Prod]-deployment :
+
+* Deploy Engine Helm application
+* Create if Deployment not exist
+* Update if Deployment already exist
+
+  ![1666003221662](image/README/1666003221662.png)
 
 ##### **Triggers**
 
     [Manual]-[Prod]-deployment Pipeline Can be triggered :
+
+    - Manually From Azure Devops
 
 ##### **Approvals**
 
     [Manual]-[Prod]-deployment Has no Approvals
 
 ### Azure Dashboard
+
+### **Repo Details**
+
+You can find the details of the code and scripts in the repository [here ](google.com)
