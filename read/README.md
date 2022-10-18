@@ -135,16 +135,13 @@ includes :
 
 [ML]-Train-Evaluate-Register : 
 
-* Publish_AML_Pipeline
-  * Adding Repo
-  * Publish Training Pipeline
-* Trigger_AML_Pipeline
-  * Get Pipeline ID for execution
-  * Trigger ML Training Pipeline
-  * Publish artifact if new model was registered
-* Delete AML Compute
-  * Delete Compute
-
+    [ML]-Train-Evaluate-Register : 
+    - Creates and Publish Azure ML Pipeline [More About AML Pipeline]()
+    - Triggers the Pipeline and waits for it to finish
+    - Generates Artifacts if new model was registered 
+    - Ask for approval 
+    - Delete AML compute 
+     
     ![1666002984923](image/README/1666002984923.png)
 
 ##### **Triggers**
@@ -166,16 +163,13 @@ includes :
 
 [DEV]-Build_and_Deploy :
 
-* Build and push Model to ACR
-  * Download Pipeline Artifacts
-  * Parse Json for Model Name and Version
-  * Install AML CLI
-  * Download model
-  * Build and Push model
-  * Deploy to Dev ACI
-    * Check If ACI Exist
-    * Cancel pipeline delete
-    * Delete + Re-Deploy **OR** Deploy The New Dev-ACI
+this pipeline : 
+- Downloads the PKL model
+- Build the Engine api Docker image
+- pushes the image to ACR (Azure Container Registry)
+- check if a dev aci is already deployed 
+- if aci exist the pipeline deletes it and re-deploy it with the new model version
+- if aci does not exist the pipeline creates a new aci with the new model version 
 
       ![1666003045253](image/README/1666003045253.png)
 
@@ -196,11 +190,10 @@ includes :
 ##### **Functionality**
 
  [Dev]-Delete-After-24Hours : 
-
-* Send deletion notification and Delete ACI After 24 hours
+ 
   * send notification for dev aci deletion - sendgrid
-  * Waiting 24 Hours
-  * Delete ACI
+  * Waits for  24 Hours
+  * Delete Dev ACI
 
     ![1666003093162](image/README/1666003093162.png)
 
@@ -220,8 +213,9 @@ includes :
 
  [QA]-Deploy :
 
-* Check If Build Is Already Deployed
-* Delete Existing And Re-Deploy  ***OR*  **Deploy to QA
+* Check If Build Is a QA aci is already  Deployed
+* Delete Existing And Re-Deploy  if the Aci already exist 
+* Deploy new QA Aci if it does not exist
 
 ##### **Triggers**
 
@@ -239,8 +233,9 @@ includes :
 
   [Manual]-[Custom-QA]-Deploy :
 
-* Check If Build Is Already Deployed
-* Delete QA-ACI + Deploy New Version *OR* Deploy QA-ACI
+* Check If Build Is a QA Custom aci is already  Deployed
+* Delete Existing And Re-Deploy  if the Aci already exist 
+* Deploy new QA Custom Aci if it does not exist
 
   ![1666003179281](image/README/1666003179281.png)
 
@@ -259,9 +254,9 @@ includes :
 
  [Manual]-[Prod]-deployment :
 
-* Deploy Engine Helm application
-* Create if Deployment not exist
-* Update if Deployment already exist
+- this pipeline uses Helm Chart to Deploy the New Version of Api image
+
+[More About Production Helm Chart deployment](here)
 
   ![1666003221662](image/README/1666003221662.png)
 
@@ -277,6 +272,3 @@ includes :
 
 ### Azure Dashboard
 
-### **Repo Details**
-
-You can find the details of the code and scripts in the repository [here ](code_description.md)
