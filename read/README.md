@@ -101,13 +101,15 @@ includes :
 ##### **Triggers**
 
 [ML]-Train-Evaluate-Register Pipeline Can be triggered :
+- Manually 
+- Automatically after [ML]-[Extract-Prepare] completion
 
 
 ---
 
 **Approvals**
 
-    [ML]-Train-Evaluate-Register Has no Approvals
+    once the model is registered an approval is asked to delete the ML resources and pass to the next pipeline
 
 #### **[DEV]-Build_and_Deploy:**
 
@@ -132,7 +134,9 @@ includes :
 
 **Triggers**
 
-   [DEV]-Build_and_Deploy  Pipeline Can be triggered :
+   [DEV]-Build_and_Deploy  Pipeline Can be triggered 
+   - Manually 
+   - Automatically after [ML]-Train-Evaluate-Register completion
 
 ##### **Approvals**
 
@@ -154,6 +158,8 @@ includes :
 ##### **Triggers**
 
     [Dev]-Delete-After-24Hours: Pipeline Can be triggered :
+    - Manually 
+    - Automatically after [DEV]-Build_and_Deploy completion
 
 ##### **Approvals**
 
@@ -171,6 +177,8 @@ includes :
 ##### **Triggers**
 
     [QA]-Deploy Pipeline Can be triggered :
+    - Manually 
+    - Automatically after [DEV]-Build_and_Deploy completion
 
 ##### **Approvals**
 
@@ -190,8 +198,7 @@ includes :
 ##### **Triggers**
 
     [Manual]-[Custom-QA]-Deploy Pipeline Can be triggered :
-     - Manually From Azure Devops
-     - Automatically By a commit to the branch develop in Digitre-estimation-engine Repo
+     - Manually
 
 ##### **Approvals**
 
@@ -213,7 +220,7 @@ includes :
 
     [Manual]-[Prod]-deployment Pipeline Can be triggered :
 
-    - Manually From Azure Devops
+    - Manually 
 
 ##### **Approvals**
 
