@@ -142,7 +142,9 @@ includes :
     - Ask for approval 
     - Delete AML compute 
      
-    ![1666002984923](image/README/1666002984923.png)
+![image](https://user-images.githubusercontent.com/59144753/196891579-d828aa0b-7c39-4f8f-b149-783e3036232d.png)
+![image](https://user-images.githubusercontent.com/59144753/196891778-20167755-7dbe-4c78-8e4c-4d49c39314c5.png)
+
 
 ##### **Triggers**
 
@@ -171,8 +173,7 @@ this pipeline :
 - if aci exist the pipeline deletes it and re-deploy it with the new model version
 - if aci does not exist the pipeline creates a new aci with the new model version 
 
-      ![1666003045253](image/README/1666003045253.png)
-
+![image](https://user-images.githubusercontent.com/59144753/196892122-11785bea-387a-4a0f-a79e-0d71d95568b4.png)
 ---
 
 **Triggers**
@@ -195,7 +196,7 @@ this pipeline :
   * Waits for  24 Hours
   * Delete Dev ACI
 
-    ![1666003093162](image/README/1666003093162.png)
+![image](https://user-images.githubusercontent.com/59144753/196892356-4e285294-7d51-4e61-aa62-c4fe89c6da23.png)
 
 ##### **Triggers**
 
@@ -216,6 +217,7 @@ this pipeline :
 * Check If Build Is a QA aci is already  Deployed
 * Delete Existing And Re-Deploy  if the Aci already exist 
 * Deploy new QA Aci if it does not exist
+![image](https://user-images.githubusercontent.com/59144753/196892569-eeb20b85-279d-467b-bdac-771714238d5c.png)
 
 ##### **Triggers**
 
@@ -237,7 +239,7 @@ this pipeline :
 * Delete Existing And Re-Deploy  if the Aci already exist 
 * Deploy new QA Custom Aci if it does not exist
 
-  ![1666003179281](image/README/1666003179281.png)
+![image](https://user-images.githubusercontent.com/59144753/196892684-c8ac4784-2d18-45d8-bb2d-0e034cba300d.png)
 
 ##### **Triggers**
 
@@ -258,7 +260,7 @@ this pipeline :
 
 [More About Production Helm Chart deployment](here)
 
-  ![1666003221662](image/README/1666003221662.png)
+![image](https://user-images.githubusercontent.com/59144753/196892955-7f7c09a1-2749-487a-8388-54b1e4911a1c.png)
 
 ##### **Triggers**
 
