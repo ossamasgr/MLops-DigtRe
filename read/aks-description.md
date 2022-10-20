@@ -31,7 +31,7 @@ Directory structure for helm chart files :
 
   ![1666271133497](image/README/1666271133497.png)
 
-**file values.yml**
+**File values.yml**
 
 ```bash
 replicaCount: 1
