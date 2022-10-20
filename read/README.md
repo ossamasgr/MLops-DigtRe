@@ -270,3 +270,10 @@ this pipeline :
     [Manual]-[Prod]-deployment Has no Approvals
 
 ### Azure Dashboard
+Azure Devops Dashboard is a customizable interactive dashboard that provides real-time information.
+To have a better visibility on the project, we added a custom Azure Devops Dashboard. containing the Builds history of all the pipelines
+
+
+DigitRE Custom Azure Devops Dashboard:
+
+![image](https://user-images.githubusercontent.com/59144753/196965095-b64aac9f-18fe-430d-8d1f-be95e7626cfe.png)
