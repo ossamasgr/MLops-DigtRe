@@ -277,3 +277,26 @@ To have a better visibility on the project, we added a custom Azure Devops Dashb
 DigitRE Custom Azure Devops Dashboard:
 
 ![image](https://user-images.githubusercontent.com/59144753/196965095-b64aac9f-18fe-430d-8d1f-be95e7626cfe.png)
+
+## Azure Machine Learning Pipelines
+Azure ML pipeline is an independently executable workflow of a complete machine learning task
+
+### Preparation Pipeline
+
+### Training Pipeline
+
+the Training Pipeline consist of 3 steps 
+  - 1st step  
+    - Train Model
+    - produce pkl model and send it in a pipeline data to the next step
+  - 2nd step
+    - Consume PKL model from first step
+    - evaluate model 
+    - send evaluation json file to next step    
+  - 3rd step 
+      - Consume PKL model from 1st step and evaluation json from 2nd step a
+      - Send Metrics Notification
+      - determin if model is valid or not 
+        - if model is valid : register model
+        - if model is not valid : discard 
+![image](https://user-images.githubusercontent.com/59144753/196972959-8cf75e53-866b-4aa6-931e-1a1a523c9baf.png)
