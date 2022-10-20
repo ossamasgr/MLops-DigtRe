@@ -72,7 +72,7 @@ High level directory structure for this repository:
 ### Pipelines
 
 * .pipelines/Dev/Build_and_Deploy.yml : pipeline triggered when the code is merged into **master** . Deploys the model to ACI
-* .pipelines/Dev/delete-dev.yml :pipeline triggered when .pipelines/Dev/Build_and_Deploy.yml started and delete the ACI-DEV after 24 hours
+* .pipelines/Dev/delete-dev.yml : pipeline triggered when .pipelines/Dev/Build_and_Deploy.yml started and delete the ACI-DEV after 24 hours
 * .pipelines/mlops/extract_Prepare.yml :
 * .pipelines/mlops/generate_artifacts.yml : pipeline .
 * .pipeline/Prod/prod-deploy-to-aks.yml :
@@ -88,13 +88,12 @@ High level directory structure for this repository:
 
 * `ml_service/util/conda_dependencies.yml` : Conda environment definition for the environment used for both training and scoring .
 
-### Training , Evaluation , Registering 
+### Training , Evaluation , Registering
 
 * .pipeline/mlops/Train-Evaluate-Register.yml :
   * training step of an ML training pipeline.
   * evaluating step which cancels the pipeline in case of non-improvement.
   * registers a new trained model if evaluation shows the new model is more performant than the previous one.
-
 
 ### Azure Pipelines
 
@@ -133,24 +132,24 @@ includes :
 
 ##### **Functionality**
 
-[ML]-Train-Evaluate-Register : 
+[ML]-Train-Evaluate-Register :
 
-    [ML]-Train-Evaluate-Register : 
-    - Creates and Publish Azure ML Pipeline [More About AML Pipeline]()
+    [ML]-Train-Evaluate-Register :
+    - Creates and Publish Azure ML Pipeline[More About AML Pipeline]()
     - Triggers the Pipeline and waits for it to finish
-    - Generates Artifacts if new model was registered 
-    - Ask for approval 
-    - Delete AML compute 
-     
+    - Generates Artifacts if new model was registered
+    - Ask for approval
+    - Delete AML compute
+
 ![image](https://user-images.githubusercontent.com/59144753/196893429-e63adb49-6fb4-4244-9bda-3200bccb1396.png)
 ![image](https://user-images.githubusercontent.com/59144753/196893156-ef8d2e75-ddab-4ffb-9a66-93547ce336fb.png)
 
 ##### **Triggers**
 
 [ML]-Train-Evaluate-Register Pipeline Can be triggered :
-- Manually 
-- Automatically after [ML]-[Extract-Prepare] completion
 
+- Manually
+- Automatically after [ML]-[Extract-Prepare] completion
 
 ---
 
@@ -164,22 +163,21 @@ includes :
 
 [DEV]-Build_and_Deploy :
 
-this pipeline : 
+this pipeline :
+
 - Downloads the PKL model
 - Build the Engine api Docker image
 - pushes the image to ACR (Azure Container Registry)
-- check if a dev aci is already deployed 
+- check if a dev aci is already deployed
 - if aci exist the pipeline deletes it and re-deploy it with the new model version
-- if aci does not exist the pipeline creates a new aci with the new model version 
-
-![image](https://user-images.githubusercontent.com/59144753/196892122-11785bea-387a-4a0f-a79e-0d71d95568b4.png)
----
+- if aci does not exist the pipeline creates a new aci with the new model version
 
 **Triggers**
 
-   [DEV]-Build_and_Deploy  Pipeline Can be triggered 
-   - Manually 
-   - Automatically after [ML]-Train-Evaluate-Register completion
+   [DEV]-Build_and_Deploy  Pipeline Can be triggered
+
+- Manually
+- Automatically after [ML]-Train-Evaluate-Register completion
 
 ##### **Approvals**
 
@@ -189,18 +187,18 @@ this pipeline :
 
 ##### **Functionality**
 
- [Dev]-Delete-After-24Hours : 
- 
-  * send notification for dev aci deletion - sendgrid
-  * Waits for  24 Hours
-  * Delete Dev ACI
+ [Dev]-Delete-After-24Hours :
+
+* send notification for dev aci deletion - sendgrid
+* Waits for  24 Hours
+* Delete Dev ACI
 
 ![image](https://user-images.githubusercontent.com/59144753/196892356-4e285294-7d51-4e61-aa62-c4fe89c6da23.png)
 
 ##### **Triggers**
 
     [Dev]-Delete-After-24Hours: Pipeline Can be triggered :
-    - Manually 
+    - Manually
     - Automatically after [DEV]-Build_and_Deploy completion
 
 ##### **Approvals**
@@ -214,14 +212,14 @@ this pipeline :
  [QA]-Deploy :
 
 * Check If Build Is a QA aci is already  Deployed
-* Delete Existing And Re-Deploy  if the Aci already exist 
+* Delete Existing And Re-Deploy  if the Aci already exist
 * Deploy new QA Aci if it does not exist
-![image](https://user-images.githubusercontent.com/59144753/196892569-eeb20b85-279d-467b-bdac-771714238d5c.png)
+  ![image](https://user-images.githubusercontent.com/59144753/196892569-eeb20b85-279d-467b-bdac-771714238d5c.png)
 
 ##### **Triggers**
 
     [QA]-Deploy Pipeline Can be triggered :
-    - Manually 
+    - Manually
     - Automatically after [DEV]-Build_and_Deploy completion
 
 ##### **Approvals**
@@ -235,7 +233,7 @@ this pipeline :
   [Manual]-[Custom-QA]-Deploy :
 
 * Check If Build Is a QA Custom aci is already  Deployed
-* Delete Existing And Re-Deploy  if the Aci already exist 
+* Delete Existing And Re-Deploy  if the Aci already exist
 * Deploy new QA Custom Aci if it does not exist
 
 ![image](https://user-images.githubusercontent.com/59144753/196892684-c8ac4784-2d18-45d8-bb2d-0e034cba300d.png)
@@ -265,11 +263,10 @@ this pipeline :
 
     [Manual]-[Prod]-deployment Pipeline Can be triggered :
 
-    - Manually 
+    - Manually
 
 ##### **Approvals**
 
     [Manual]-[Prod]-deployment Has no Approvals
 
 ### Azure Dashboard
-
