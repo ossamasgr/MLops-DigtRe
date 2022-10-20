@@ -142,9 +142,8 @@ includes :
     - Ask for approval 
     - Delete AML compute 
      
-![image](https://user-images.githubusercontent.com/59144753/196891579-d828aa0b-7c39-4f8f-b149-783e3036232d.png)
-![image](https://user-images.githubusercontent.com/59144753/196891778-20167755-7dbe-4c78-8e4c-4d49c39314c5.png)
-
+![image](https://user-images.githubusercontent.com/59144753/196893429-e63adb49-6fb4-4244-9bda-3200bccb1396.png)
+![image](https://user-images.githubusercontent.com/59144753/196893156-ef8d2e75-ddab-4ffb-9a66-93547ce336fb.png)
 
 ##### **Triggers**
 
