@@ -112,9 +112,10 @@ includes :
 
     [ML]-[Extract-Prepare] :
     - Check if AzureML Compute are created if not creates new
-    - publish Azure ML Pipeline[more about Azure ML Pipeline](https://link.com)
+    - publish Azure ML Pipeline
     - once the pipeline is Published it Runs it remotely
-
+    
+[More About AML Pipeline]()
 ![image](https://user-images.githubusercontent.com/59144753/195831013-3c4c10de-4f7b-47af-b1b3-dfdf5f397f4f.png)
 ![image](https://user-images.githubusercontent.com/59144753/195831075-86a8e9d3-05f4-4916-991d-56e60ba0cd9d.png)
 
@@ -135,7 +136,7 @@ includes :
 [ML]-Train-Evaluate-Register :
 
     [ML]-Train-Evaluate-Register :
-    - Creates and Publish Azure ML Pipeline[More About AML Pipeline]()
+    - Creates and Publish Azure ML Pipeline
     - Triggers the Pipeline and waits for it to finish
     - Generates Artifacts if new model was registered
     - Ask for approval
@@ -283,9 +284,18 @@ Azure ML pipeline is an independently executable workflow of a complete machine 
 
 ### Preparation Pipeline
 
+The Preparation pipeline consist of 2 steps
+  - 1st step
+    - Extract Tremplin data and store it in Azure blob (Datastore)
+  - 2nd step
+    - Prepares data and generates datasets
+
+![image](https://user-images.githubusercontent.com/59144753/196974393-1f92ff33-adf7-45ad-a228-0f52b3704810.png)
+
+
 ### Training Pipeline
 
-the Training Pipeline consist of 3 steps 
+The Training Pipeline consist of 3 steps 
   - 1st step  
     - Train Model
     - produce pkl model and send it in a pipeline data to the next step
@@ -298,5 +308,7 @@ the Training Pipeline consist of 3 steps
       - Send Metrics Notification
       - determin if model is valid or not 
         - if model is valid : register model
-        - if model is not valid : discard 
+        - if model is not valid : discard
+
+
 ![image](https://user-images.githubusercontent.com/59144753/196972959-8cf75e53-866b-4aa6-931e-1a1a523c9baf.png)
