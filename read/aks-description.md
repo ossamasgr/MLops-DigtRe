@@ -1,8 +1,9 @@
 ## Deploy AKS Using Helm Chart
 
 - [About Helm Chart](#about)
-- [Helm Chart Structure](#HelmChartStructure)
-- [AutoScaling](#AutoScaling)
+- [Helm Chart Structure](#helmchartstructure)
+- [AutoScaling](#autoscaling)
+- [Configuration](#configuration)
 - [Usage](#usage)
 
 ## About Helm Chart
@@ -65,8 +66,6 @@ $ helm delete my-release -n engine
 
 ---
 
-
-
 ## Configuration
 
 The following table lists the configurable parameters of the DigitRE API chart and their default values.
@@ -89,8 +88,6 @@ The following table lists the configurable parameters of the DigitRE API chart a
 | `affinity`                                   | Affinity                             | `{}`           |
 
 ---
-
-
 
 ## Usage
 
