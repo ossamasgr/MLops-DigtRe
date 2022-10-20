@@ -116,6 +116,8 @@ includes :
     - once the pipeline is Published it Runs it remotely
     
 [More About AML Pipeline]()
+
+
 ![image](https://user-images.githubusercontent.com/59144753/195831013-3c4c10de-4f7b-47af-b1b3-dfdf5f397f4f.png)
 ![image](https://user-images.githubusercontent.com/59144753/195831075-86a8e9d3-05f4-4916-991d-56e60ba0cd9d.png)
 
