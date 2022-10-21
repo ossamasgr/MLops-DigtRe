@@ -58,7 +58,7 @@ $ helm install engine  -n engine
 * To uninstall/delete the `my-release` deployment:
 
 ```bash
-$ helm delete my-release -n engine
+$ helm delete engine -n engine
 ```
 
 * The command removes all the Kubernetes components associated with the chart and deletes the release.
