@@ -3,7 +3,9 @@
 - [About Helm Chart](#about-helm-chart)
 - [Helm Chart Structure](#helm-chart-structure)
 - [Architecture](#kubernetes-architecture-)
-- [AutoScaling](#auto-scaling)
+- [Deployment](#engine-deployment)
+        - [rolling-updates](#rolling-updates)
+        - [AutoScaling](#auto-scaling)
 - [Configuration](#configuration)
 - [Usage](#usage)
 
