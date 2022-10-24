@@ -2,40 +2,19 @@
 
 ## Sommaire
 
-- [Azure Devops ]()
-  - [Azure Repos]()
-    - [Digitre-estimation-engine]()
-    - [Devops-MLops]()
-  - [Azure Pipelines]()
-    - [[ML]-[Extract-Prepare]]()
-      - [Functionality]()
-      - [Triggers]()
-      - [Approvals]()
-    - [[ML]-Train-Evaluate-Register]()
-      - [Functionality]()
-      - [Triggers]()
-      - [Approvals]()
-    - [[DEV]-Build_and_Deploy]()
-      - [Functionality]()
-      - [Triggers]()
-      - [Approvals]()
-    - [[Dev]-Delete-After-24Hours]()
-      - [Functionality]()
-      - [Triggers]()
-      - [Approvals]()
-    - [[QA]-Deploy]()
-      - [Functionality]()
-      - [Triggers]()
-      - [Approvals]()
-    - [[Manual]-[Custom-QA]-Deploy]()
-      - [Functionality]()
-      - [Triggers]()
-      - [Approvals]()
-    - [[Manual]-[Prod]-deployment]()
-      - [Functionality]()
-      - [Triggers]()
-      - [Approvals]()
-  - [Azure Dashboard]()
+- [Azure Devops ](#1-azure-devops)
+  - [Azure Repos](#azure-repos)
+    - [Devops-MLops](#devops-mlops)
+  - [Azure Pipelines](#azure-pipelines)
+    - [[ML]-[Extract-Prepare]](#ml-extract-prepare)
+    - [[ML]-Train-Evaluate-Register](#ml-train-evaluate-register-)
+    - [[DEV]-Build_and_Deploy](#dev-build_and_deploy)
+    - [[Dev]-Delete-After-24Hours](#dev-delete-after-24hours)
+    - [[QA]-Deploy](#qa-deploy)
+    - [[Manual]-[Custom-QA]-Deploy](#manual-custom-qa-deploy)
+    - [[Manual]-[Prod]-deployment](#manual-prod-deployment)
+  - [Azure Dashboard](#azure-dashboard)
+  - [Azure Machine Learning Pipelines](#azure-machine-learning-pipelines)
 
 ## 1. Azure Devops
 
@@ -196,7 +175,7 @@ includes :
     - publish Azure ML Pipeline
     - once the pipeline is Published it Runs it remotely
     
-[More About AML Pipeline]()
+[More About AML Pipeline](#azure-machine-learning-pipelines)
 
 
 ![image](https://user-images.githubusercontent.com/59144753/195831013-3c4c10de-4f7b-47af-b1b3-dfdf5f397f4f.png)
@@ -339,7 +318,7 @@ this pipeline :
 
 - this pipeline uses Helm Chart to Deploy the New Version of Api image
 
-[More About Production Helm Chart deployment](here)
+[More About Production Helm Chart deployment](#)
 
 ![image](https://user-images.githubusercontent.com/59144753/196892955-7f7c09a1-2749-487a-8388-54b1e4911a1c.png)
 
