@@ -4,8 +4,8 @@
 - [Helm Chart Structure](#helm-chart-structure)
 - [Architecture](#kubernetes-architecture-)
 - [Deployment](#engine-deployment)
-        - [rolling-updates](#rolling-updates)
-        - [AutoScaling](#auto-scaling)
+    - [rolling-updates](#rolling-updates)
+    - [AutoScaling](#auto-scaling)
 - [Configuration](#configuration)
 - [Usage](#usage)
 
