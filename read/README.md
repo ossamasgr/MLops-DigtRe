@@ -71,13 +71,19 @@ High level directory structure for this repository:
 
 ### Pipelines
 
-* .pipelines/Dev/Build_and_Deploy.yml : pipeline triggered when the code is merged into **master** . Deploys the model to ACI
-* .pipelines/Dev/delete-dev.yml : pipeline triggered when .pipelines/Dev/Build_and_Deploy.yml started and delete the ACI-DEV after 24 hours
-* .pipelines/mlops/extract_Prepare.yml :
-* .pipelines/mlops/generate_artifacts.yml : pipeline .
-* .pipeline/Prod/prod-deploy-to-aks.yml :
-* .pipelines/QA/Deploy-to-QA.yml :
-* .pipelines/QA/Manual-qa-aci.yml :
+#### Dev
+
+* `.pipelines/Dev/Build_and_Deploy.yml` : Build the model and push it to Azure container registry(ACR) and then deploy it to ACI
+* `.pipelines/Dev/delete-dev.yml` : pipeline triggered when .pipelines/Dev/Build_and_Deploy.yml started and delete the ACI-DEV after 24 hours
+
+#### QA
+
+* `.pipelines/QA/Deploy-to-QA.yml` : deploys the trained model to Azure Container Instance
+* `.pipelines/QA/Manual-qa-aci.yml` : Deploys a specific version of a model to Azure Container Instance
+
+#### PROD
+
+* `.pipelines/Prod/prod-deploy-to-aks.yml` : deploys the trained model to Azure Kubernetes Services
 
 ### ML Services
 
@@ -88,12 +94,86 @@ High level directory structure for this repository:
 
 * `ml_service/util/conda_dependencies.yml` : Conda environment definition for the environment used for both training and scoring .
 
-### Training , Evaluation , Registering
-
-* .pipeline/mlops/Train-Evaluate-Register.yml :
+### Extraction, Preparing, Training , Evaluation , Registering
+* `.pipelines/mlops/Extract-Prepare.yml`
+  * Extract Tremplin Data
+  * Prepares Data
+* `.pipelines/mlops/Train-Evaluate-Register.yml` :
   * training step of an ML training pipeline.
   * evaluating step which cancels the pipeline in case of non-improvement.
-  * registers a new trained model if evaluation shows the new model is more performant than the previous one.
+  * registers a new trained model
+
+## Changing Config
+
+for all the config parameters we created a file placed in `.pipelines/variables/vars.yml` Containing : 
+### Directory Paths
+
+| Parameter                                      | Description                                | value                                   |
+| ---------------------------------------------- | ------------------------------------------ | ----------------------------------------|
+| `SOURCES_DIR_TRAIN`                            | ML repo name                               | `Digitre-estimation-engine`             |
+| `EXTRACT_SCRIPT_PATH`                          | the path of extraction script              | `src/extract/extract_tremplin.py`       |
+| `PREPARE_SCRIPT_PATH`                          | the path of preparation script             | `src/preparation/preparation_runner.py` |
+| `TRAIN_SCRIPT_PATH`                            | the path of Training script                | `src/trainer/training_runner.py`        |
+| `EVALUATE_SCRIPT_PATH`                         | the path of evaluation script              | `src/validation/evaluation_runner.py`   |
+| `NOTIFICATION_SCRIPT_PATH`                     | the path of metric notification script     | `ml_service/scripts/pass_model.py`      |
+
+### Notification Variables  
+
+| Parameter                                      | Description                                | value                                   | 
+| ---------------------------------------------- | ------------------------------------------ | ----------------------------------------|
+| `PASSING_POINT`                                | validation model percentage                | `50`                                    |
+| `DESTINATION_EMAIL`                            | Email to recieve model metrics notifcation | `mlops@digitregroup.com`                |
+| `Deletion_Notification_email`                  | Email to recieve aci deletion notifcation  | `mlops@digitregroup.com`                |
+
+### Azure ML Variables
+
+| Parameter                                      | Description                                | value                                   | 
+| ---------------------------------------------- | ------------------------------------------ | ----------------------------------------|
+| `EXPERIMENT_NAME`                              | Azure ML Training experiment name          | `training`                              |
+| `PREPARE_EXPERIMENT_NAME`                      | Azure ML Preparation experiment name       | `prepare`                               |
+| `DATASTORE_NAME`                               | Azure ML DataStore  name                   | `drimki_data`                           |
+| `DATASET_VERSION`                              | Azure ML DataSet Version                   | `latest`                                |
+| `TRAINING_PIPELINE_NAME`                       | Azure ML training pipeline name            | `engine-Training-Pipeline`              |
+| `PREPARATION_PIPELINE_NAME`                    | Azure ML Preparation pipeline name         | `engine-Preparation-Pipeline`           |
+
+### AML Compute Cluster Configs
+
+| Parameter                                      | Description                                | value                                                 | 
+| ---------------------------------------------- | ------------------------------------------ | ------------------------------------------------------|
+| `AML_ENV_NAME`                                 | Environment name                           | `azure_ml_train_environment`                          |
+| `AML_ENV_TRAIN_CONDA_DEP_FILE`                 | the name of conda dependencies file        | `conda_dependencies.yml`                              |
+| `AML_COMPUTE_CLUSTER_CPU_SKU`                  | the size of the compute cluster            | `Standard_F8s_v2`                                     |
+| `AML_COMPUTE_CLUSTER_NAME`                     | the name of the compute cluster            | `training-computes`                                   |
+| `AML_CLUSTER_MIN_NODES`                        | the minimum nodes number                   | `0` : because when it's 0 the cluster can scale down  |
+| `AML_CLUSTER_MAX_NODES`                        | the maximum nodes number                   | `2`                                                   |
+| `AML_REBUILD_ENVIRONMENT`                      | when `true` the environment will rebuild when `false` azure ml will not re-build the environment   | `2`                                                   |
+
+### scoring image (API image) Configs
+
+| Parameter                                      | Description                                 | value                                                 | 
+| ---------------------------------------------- | ------------------------------------------  | ------------------------------------------------------|
+| `IMAGE_NAME`                                   |  Docker image Name                          | `engine`                                              |
+| `MODEL_NAME`                                   |  the name of the pkl model                  | `engine_model.pkl`                                    |
+
+### Dns Congis
+
+| Parameter                                      | Description                                 | value                                                 | 
+| ---------------------------------------------- | ------------------------------------------  | ------------------------------------------------------|
+| `dns_zone`                                     |  the name of the private dns zone           | `drimki-engine.com`                                   |
+| `record_dev`                                   |  the dev env dns record                     | `dev`                                                 |
+| `record_qa`                                    |  the qa env dns record                      | `qa`                                                  |
+| `record_costum_qa`                             |  the custom qa env dns record               | `costum-qa`                                           |
+| `record_prod`                                  |  the production env dns record              | `prod`                                                |
+
+### Virtual Network Congis
+
+| Parameter                                      | Description                                 | value                                                 | 
+| ---------------------------------------------- | ------------------------------------------  | ------------------------------------------------------|
+| `vnet_name`                                    |  the name of the virtual network            | `VNetDigi`                                            |
+| `subnet_aci_name`                              |  ACI subnet name                            | `Subnet-aci`                                          |
+| `subnet_aks_name`                              |  AKS Subnet name                            | `Subnet-Aks`                                          |
+
+
 
 ### Azure Pipelines
 
@@ -101,6 +181,7 @@ This Architecture shows How Azure Pipelines are Working Together
 includes :
 
 - Workflow
+- Functionality
 - Triggers
 - Approvals
 
